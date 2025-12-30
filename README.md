@@ -102,9 +102,6 @@ The compiled static files will be in the `dist/` directory.
 
 ```
 uncle_lang/
-├── .github/
-│   └── workflows/
-│       └── deploy.yml          # GitHub Actions workflow
 ├── src/
 │   ├── interpreter/
 │   │   ├── lexer.ts           # Tokenizer
@@ -247,9 +244,6 @@ npm run build
 
 ```
 uncle_lang/
-├── .github/
-│   └── workflows/
-│       └── deploy.yml          # GitHub Actions 工作流程
 ├── src/
 │   ├── interpreter/
 │   │   ├── lexer.ts           # 詞法分析器
@@ -285,3 +279,6 @@ uncle_lang/
 ## 致謝
 
 靈感來自日本的「おじさん構文」（Ojisan Koubun）——中年男性的特殊文字訊息風格。
+
+
+This Project is contributed with VibeCoding.
