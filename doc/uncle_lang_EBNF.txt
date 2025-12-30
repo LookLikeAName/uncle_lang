@@ -1,0 +1,99 @@
+(* This is a EBNF file for Esolang uncle lang, inspired from Japan's Ojisan koubun,
+the source will be encoded with UTF-8 and each symbol the language used will be in Traditional chinese or emoji*)
+
+(* Greeting - can also be use as comment, do not affect the logic but count in grammar.
+Parser will check if specified item need to start with greeting otherwise just skip it as comment.
+string_char part can be any messages, use to let the code reads like an actual paragraph 
+*)
+
+greet_parenthesis = "❤" | "😘" | "🥺" | "😈" | "😥" | "💏" ;
+greeting = greet_parenthesis greeting_char greet_parenthesis
+
+(* Program Structure *)
+program = { statement } ;
+
+(* Statements *)
+(* For statement separator use "💦" instead of ";" *)
+statement = assignment
+          | if_statement
+          | print_statement
+          | expression 
+          | declaration;
+
+assignment = greeting identifier { index_access } "是" expression "💦" ;
+
+declaration = greeting "跟你說" identifier [ "是" expression ] "💦" ;
+
+if_statement = greeting "如果" "👉" condition "👈" block
+               [ "也可能" "👉" condition "👈" block ] 
+               [ "不然就" block ];
+
+(* A block must contain polite statements *)
+block = "👆" { statement } "👇" ;
+
+(* Conditions - now supports boolean expressions *)
+condition = logical_or ;
+// ... (rest of the file is unchanged) ...
+
+logical_or = logical_and { "或是" logical_and } ;
+
+logical_and = comparison { "而且" comparison } ;
+
+comparison = expression [ comparison_op expression ]
+           | "❌" comparison ;
+
+comparison_op = "等於" | "❌等於" | "小於" | "大於" | "小於等於" | "大於等於" ;
+
+(* Expressions with operator precedence *)
+expression = term { ("加上" | "減掉") term } ;
+
+term = factor { ("乘" | "除" | "取餘數") factor } ;
+
+factor = number
+       | boolean
+       | string
+       | vector_literal
+       | identifier [ index_access ]
+       | "👉" expression "👈"
+       | "👉" condition "👈" ;
+
+(* Vector and String Support *)
+vector_literal = "🤜" [ expression { "🌟" expression } ] "🤛" ;
+
+index_access = "🤜" expression "🤛" ;
+
+(* Lexical Elements *)
+boolean = "真的" | "假的" ;
+
+identifier = letter { letter | digit | "_" } ;
+
+number = digit { digit } [ "." digit { digit } ] ;
+
+letter = (Any UTF-8 supported symbol without digits)
+
+digit = "0" | "1" | "2" | "3" | "4" | "5" | "6" | "7" | "8" | "9" ;
+
+string = '🤗' { string_char } '🤗' ;
+
+string_char = letter
+            | digit
+            | " "
+            | escape_sequence
+            | (* any printable character except " and \ *) ;
+
+(*greeting_char should contain "大叔" *)
+greeting_char = letter
+            | digit
+            | " "
+            | escape_sequence
+            | (* any printable character except " and \ *) ;
+
+escape_sequence = "\" ( "n" | "t" | "r" | "\" | '"' ) ;
+
+
+(* Special support *)
+(* print function *)
+
+print_statement = greeting "🥰" expression  "💦" ;
+ 
+

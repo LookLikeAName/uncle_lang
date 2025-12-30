@@ -1,0 +1,111 @@
+## Uncle Lang Test Cases
+
+(* Copy and paste the code blocks into the application to test. *)
+
+---
+### VALID TEST CASES
+---
+
+### Test Case 1: Simple Declaration & Printing
+(* This tests basic variable declaration and the print function. *)
+
+❤哈囉，大叔來了❤ 跟你說 變數 是 10💦
+😘啾咪，大叔😘 🥰 變數 💦
+
+---
+### Test Case 2: Arithmetic Expression
+(* This tests operator precedence with arithmetic operations and grouping. *)
+
+ 😘嗨嗨❗OO醬，大叔🥺 跟你說 結果 是 10 加上 5 乘 👉 3 減掉 1 👈💦 😘你不相信大叔對吧😫那我們來看看😘 🥰 結果 💦
+
+---
+### Test Case 3: Variable Assignment
+(* This tests declaring a variable then reassigning it. *)
+
+😘大叔在嗎😘 跟你說 數值 是 10💦
+❤寶貝，大叔來囉❤ 數值 是 20💦
+😘大叔好嗎😘 🥰 數值 💦
+
+---
+### Test Case 4: If-Else Logic
+(* This tests a simple conditional statement. *)
+
+😈嘿嘿，大叔😈 跟你說 年齡 是 25💦
+😥大叔你知道嗎😥 如果 👉 年齡 大於等於 18 👈 👆
+  😘成年了，大叔說😘 🥰 🤗成年🤗 💦
+👇 不然就 👆
+  😘未成年，大叔說😘 🥰 🤗未成年🤗 💦
+👇
+
+---
+### Test Case 5: If / Else-If / Else Chain
+(* This tests a more complex conditional chain. *)
+
+💏親一個，大叔💏 跟你說 分數 是 85💦
+❤你好，大叔❤ 如果 👉 分數 大於等於 90 👈 👆
+  😘太棒了，大叔說😘 🥰 🤗Grade: A🤗 💦
+👇 也可能 👉 分數 大於等於 80 👈 👆
+  😘不錯喔，大叔覺得😘 🥰 🤗Grade: B🤗 💦
+👇 不然就 👆
+  😘加油啦，大叔說😘 🥰 🤗Grade: C🤗 💦
+👇
+
+---
+### Test Case 6: Vector (Array) and Indexing
+(* This tests creating a vector and accessing one of its elements. *)
+
+❤寶貝，大叔❤ 跟你說 陣列 是 🤜 100 🌟 200 🌟 300 🤛💦
+😘大叔看看😘 🥰 陣列🤜1🤛 💦
+
+---
+### Test Case 7: String Assignment
+(* This tests string literals. *)
+
+❤你好，大叔❤ 跟你說 問候語 是 🤗你好，世界！🤗 💦
+😘大叔今天好嗎😘 🥰 問候語 💦
+
+---
+### Test Case 8: Boolean Logic
+(* This tests boolean values and conditions. *)
+
+🥺嗨嗨❗OO醬，大叔想你囉🥺 跟你說 世界 是 真的💦
+😘大叔讓你看看😘 如果 👉 世界 👈 👆
+    ❤跟大叔說的一樣，就會有❤ 🥰 🤗你好，世界！🤗 💦
+👇😘印出來喔 怎麼樣 大叔厲害吧❗
+
+---
+### ERROR TEST CASES
+(* These should produce specific error messages *)
+---
+
+### Error Case 1: Declaration without greeting
+(* Should error: This statement requires a greeting *)
+
+跟你說 錯誤變數 是 5💦
+
+---
+### Error Case 2: Print without greeting
+(* Should error: This statement requires a greeting *)
+
+🥰 🤗Hello🤗 💦
+
+---
+### Error Case 3: If statement without greeting
+(* Should error: This statement requires a greeting *)
+
+如果 👉 真的 👈 👆
+    😘測試😘 🥰 🤗test🤗 💦
+👇
+
+---
+### Error Case 4: Assignment without greeting
+(* Should error: This statement requires a greeting *)
+
+😘先宣告，大叔😘 跟你說 測試變數 是 10💦
+測試變數 是 20💦
+
+---
+### Error Case 5: Greeting without '大叔'
+(* Should error: Greeting must contain '大叔' to be valid *)
+
+❤哈囉❤ 跟你說 無效變數 是 100💦
