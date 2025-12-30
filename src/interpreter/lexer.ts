@@ -181,7 +181,17 @@ export class Lexer {
             return;
         }
 
-        // Priority 3: Other special emoji tokens (e.g., 👉, 💦, 🥰)
+        // Priority 3: Multi-character keywords (must be checked before single emoji tokens)
+        // Check keywords that might start with emoji characters
+        for (const keyword in Lexer.keywords) {
+            if (remaining.startsWith(keyword)) {
+                this.current += keyword.length;
+                this.addToken(Lexer.keywords[keyword]);
+                return;
+            }
+        }
+
+        // Priority 4: Single emoji tokens (e.g., 👉, 💦, 🥰, ❌)
         for (const lexeme in Lexer.emojiTokens) {
             if (remaining.startsWith(lexeme)) {
                 this.current += lexeme.length;
@@ -191,13 +201,13 @@ export class Lexer {
         }
 
         const c = this.peek();
-        // Priority 4: Numbers
+        // Priority 5: Numbers
         if (this.isDigit(c)) {
             this.number();
             return;
         }
 
-        // Priority 5: Identifiers and keywords
+        // Priority 6: Identifiers and keywords
         if (this.isAlpha(c)) {
             this.identifier();
             return;
