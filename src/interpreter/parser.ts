@@ -62,31 +62,43 @@ export class Parser {
      */
     private statement(): Stmt {
         try {
-            if (this.check(TokenType.Greet)) {
-                // Statements that MUST start with a greeting
-                const greetToken = this.consume(TokenType.Greet, ErrorMessages.EXPECT_GREETING_AT_START);
-                
-                // Validate that the greeting contains '大叔'
-                if (!greetToken.literal || !greetToken.literal.includes('大叔')) {
-                    throw this.error(greetToken, ErrorMessages.GREETING_MUST_CONTAIN_UNCLE);
-                }
+            // Skip greetings that act as comments (not followed by required statements)
+            while (this.check(TokenType.Greet)) {
+                // Peek ahead to see if this greeting is followed by a statement that requires it
+                const nextToken = this.tokens[this.current + 1];
+                if (nextToken && (
+                    nextToken.type === TokenType.Var ||
+                    nextToken.type === TokenType.If ||
+                    nextToken.type === TokenType.Print ||
+                    nextToken.type === TokenType.Identifier // Could be assignment
+                )) {
+                    // This greeting is required, consume and validate it
+                    const greetToken = this.consume(TokenType.Greet, ErrorMessages.EXPECT_GREETING_AT_START);
+                    
+                    // Validate that the greeting contains '大叔'
+                    if (!greetToken.literal || !greetToken.literal.includes('大叔')) {
+                        throw this.error(greetToken, ErrorMessages.GREETING_MUST_CONTAIN_UNCLE);
+                    }
 
-                if (this.match(TokenType.Var)) {
-                    return this.varDeclaration();
+                    if (this.match(TokenType.Var)) {
+                        return this.varDeclaration();
+                    }
+                    if (this.match(TokenType.If)) {
+                        return this.ifStatement();
+                    }
+                    if (this.match(TokenType.Print)) {
+                        return this.printStatement();
+                    }
+                    // If it's not any of the above, it must be an assignment statement.
+                    return this.assignmentStatement();
+                } else {
+                    // This greeting is standalone (acts as a comment), skip it
+                    this.advance();
                 }
-                if (this.match(TokenType.If)) {
-                    return this.ifStatement();
-                }
-                if (this.match(TokenType.Print)) {
-                    return this.printStatement();
-                }
-                // If it's not any of the above, it must be an assignment statement.
-                return this.assignmentStatement();
-
-            } else {
-                // Statements that DO NOT start with a greeting
-                return this.ungreetedStatement();
             }
+
+            // Statements that DO NOT start with a greeting
+            return this.ungreetedStatement();
         } catch (error) {
             this.synchronize();
             return null;

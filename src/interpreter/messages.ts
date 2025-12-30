@@ -5,7 +5,7 @@ export const ErrorMessages = {
     EXPECT_SEMICOLON_AFTER_VAR: "Expect '💦' after variable declaration.",
     MISSING_GREETING: "This statement requires a greeting '😘...😘' at the beginning.",
     EXPECT_LEFT_PAREN_AFTER_IF: "Expect '👉' after '如果'.",
-    EXPECT_RIGHT_PAREN_AFTER_CONDITION: "Expect ')' after if condition.",
+    EXPECT_RIGHT_PAREN_AFTER_CONDITION: "Expect '👈' after if condition.",
     EXPECT_GREETING_BEFORE_ELSE_IF: "Expect greeting before '也可能'.",
     EXPECT_IF_AFTER_ELSE_IF: "Expect '如果' after '也可能'.",
     EXPECT_GREETING_BEFORE_ELSE: "Expect greeting before '不然就'.",
@@ -19,6 +19,6 @@ export const ErrorMessages = {
     EXPECT_RIGHT_PAREN_AFTER_ARGUMENTS: "Expect '👈' after arguments.",
     EXPECT_RIGHT_BRACKET_AFTER_INDEX: "Expect '🤛' after index.",
     EXPECT_EXPRESSION: "Expect expression.",
-    EXPECT_RIGHT_PAREN_AFTER_EXPRESSION: "Expect ')' after expression.",
+    EXPECT_RIGHT_PAREN_AFTER_EXPRESSION: "Expect '👈' after expression.",
     EXPECT_RIGHT_BRACKET_AFTER_VECTOR: "Expect '🤛' after vector values.",
 };
