@@ -181,9 +181,10 @@ export class Lexer {
             return;
         }
 
-        // Priority 3: Multi-character keywords (must be checked before single emoji tokens)
-        // Check keywords that might start with emoji characters
-        for (const keyword in Lexer.keywords) {
+        // Priority 3: Multi-character keywords (sorted by length, longest first)
+        // This ensures "大於等於" is matched before "大於", "❌等於" before "等於", etc.
+        const sortedKeywords = Object.keys(Lexer.keywords).sort((a, b) => b.length - a.length);
+        for (const keyword of sortedKeywords) {
             if (remaining.startsWith(keyword)) {
                 this.current += keyword.length;
                 this.addToken(Lexer.keywords[keyword]);
